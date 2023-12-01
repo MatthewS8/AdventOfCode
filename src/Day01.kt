@@ -1,19 +1,16 @@
-import java.lang.Integer.max
-import kotlin.math.min
-
 fun main() {
     fun part1(input: List<String>): Int {
-        var sum = 0
-        input.forEach {
-            sum += getNumberFromString(it)
+        return input.sumOf {
+            "${it.first(Char::isDigit)}${it.last(Char::isDigit)}".toInt()
         }
-        return sum
     }
 
     fun part2(input: List<String>): Int {
         var sum = 0
+        var otherSum = 0
         input.forEach {
-            sum += getNumberDigitsFromString(it)
+            val myNumber = getNumberDigitsFromString(it)
+            sum += myNumber
         }
         return sum
     }
@@ -25,36 +22,6 @@ fun main() {
     val input = readInput("Day01")
     part1(input).println()
     part2(input).println()
-}
-
-fun getNumberFromString(string: String): Int {
-    var i = 0
-    var j = string.length - 1
-    var res = 0
-    var foundI = false
-    var foundJ = false
-    while (!foundI || !foundJ && i <= j) {
-        var tmp: Int?
-        if (!foundI) {
-            tmp = string[i].digitToIntOrNull()
-            if (tmp !== null) {
-                res += tmp * 10
-                foundI = true
-            } else {
-                i++
-            }
-        }
-        if (!foundJ) {
-            tmp = string[j].digitToIntOrNull()
-            if (tmp !== null) {
-                res += tmp
-                foundJ = true
-            } else {
-                j--
-            }
-        }
-    }
-    return res
 }
 fun getNumberDigitsFromString(string: String): Int {
     val digits = mapOf(
@@ -81,8 +48,8 @@ fun getNumberDigitsFromString(string: String): Int {
                 res += tmp * 10
                 foundI = true
             } else {
-                val subs = string.substring(i, min( i+5, string.length))
-                for( (d, k) in digits) {
+                for ((d, k) in digits) {
+                    val subs = string.substring(i, (i + d.length).coerceAtMost(string.length))
                     if (subs.contains(d)) {
                         res += k * 10
                         foundI = true
@@ -98,8 +65,8 @@ fun getNumberDigitsFromString(string: String): Int {
                 res += tmp
                 foundJ = true
             } else {
-                val subs = string.substring(max(0, j-4), j + 1)
-                for( (d, k) in digits) {
+                for ((d, k) in digits) {
+                    val subs = string.substring(j, (j + d.length).coerceAtMost(string.length))
                     if (subs.contains(d)) {
                         res += k
                         foundJ = true
@@ -110,7 +77,5 @@ fun getNumberDigitsFromString(string: String): Int {
             }
         }
     }
-    println("for ${string} res is ${res}")
     return res
 }
-
