@@ -7,7 +7,6 @@ fun main() {
 
     fun part2(input: List<String>): Int {
         var sum = 0
-        var otherSum = 0
         input.forEach {
             val myNumber = getNumberDigitsFromString(it)
             sum += myNumber
