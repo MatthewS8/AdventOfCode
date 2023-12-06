@@ -54,12 +54,17 @@ fun main() {
 }
 
 fun getWinningRaceNumber(race: Race): Long {
-    var s = 0L
+    var first = 0L
+
     for (timeHolding in (1 until race.time)) {
         val c = (race.time - timeHolding) * timeHolding
-        if (c > race.distanceToBeat) s++
+        if (c > race.distanceToBeat) {
+            first = timeHolding
+            break
+        }
     }
-    return s
+
+    return race.time - (first * 2) + 1
 }
 
 data class Race(val time: Long, var distanceToBeat: Long = 0)
