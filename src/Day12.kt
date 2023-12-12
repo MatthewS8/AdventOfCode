@@ -19,8 +19,9 @@ fun main() {
             val numbersUnfolded = numbers.toMutableList()
             for (i in 1 until 5) {
                 recordUnfolded += "?$record"
-                numbersUnfolded += numbersUnfolded
+                numbersUnfolded += numbers
             }
+            println("ru: $recordUnfolded, ${numbersUnfolded.size} ${numbers.size}")
             SpringConditionRecord(recordUnfolded, numbersUnfolded)
         }
 
