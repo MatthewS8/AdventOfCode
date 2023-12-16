@@ -7,6 +7,10 @@ fun main() {
         return 0
     }
 
+    val testInput = readInput("DayXX_test")
+    check(part1(testInput) == 0)
+    check(part2(testInput) == 0)
+
     val input = readInput("DayXX")
     println(part1(input))
     println(part2(input))
