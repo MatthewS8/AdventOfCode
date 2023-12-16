@@ -64,7 +64,6 @@ fun lightPath(startPoint: StartingPoint, input: List<String>, visited: List<Bool
     var currDirection = startPoint.direction
     val pathToExplore = mutableSetOf<StartingPoint>()
     while (i in 0..<colLength && j in 0..<rowLength) {
-        val a = input[i][j]
         when (currDirection) {
             Direction.DOWN -> when (input[i][j]) {
                 '.', '|' -> visited[i++][j] = true
@@ -141,7 +140,6 @@ fun lightPath(startPoint: StartingPoint, input: List<String>, visited: List<Bool
                 '|' -> {
                     pathToExplore.add(StartingPoint(i + 1, j, Direction.DOWN))
                     pathToExplore.add(StartingPoint(i - 1, j, Direction.UP))
-                    currDirection = Direction.UP
                     visited[i][j] = true
                     break
                 }
