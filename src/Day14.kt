@@ -26,41 +26,23 @@ fun main() {
 
         var sum = 0
         colsStrings.forEach {col ->
-            val matchResult = col.split( '#')
-            var countedSoFar = col.indexOfFirst { it != '#' }
-            matchResult.forEachIndexed { i, str ->
-                if (str.isNotEmpty()) {
-                    val nOfOs = str.count { it == 'O' }
-                    for (ind in 0..<nOfOs)
-                        sum += col.length - ind + countedSoFar
-
-                    countedSoFar += str.length
-                } else {
-                    countedSoFar ++
+            val size = col.length
+            var startIndex = 0
+            while(startIndex < size) {
+                var currIndex = startIndex
+                var roundedRocksFound = 0
+                while(currIndex < size && col[currIndex] != '#') {
+                    if (col[currIndex] == 'O') roundedRocksFound++
+                    currIndex++
                 }
+                for (i in 0..< roundedRocksFound) {
+                    sum += size - i - startIndex
+                }
+                currIndex++
+                startIndex = currIndex
             }
         }
-
-        /*map.forEach {
-            val tmp = it.value.groupBy { it.second }
-            val rr = tmp['O']
-            val csr = tmp['#']
-            val sand = tmp['.']?.toMutableList()
-            var sum = 0
-            sum = rr?.sumOf { (colIndex, _) ->
-                var firstAvailableSpot = sand?.firstOrNull { (s, _) -> s < colIndex }
-                if (firstAvailableSpot != null) {
-                    val barrier = csr?.firstOrNull {(cubeRocksIndex, _) ->
-                        cubeRocksIndex < colIndex && cubeRocksIndex > firstAvailableSpot.first
-                    }
-                    if (barrier != null) {
-
-                    }
-                }
-            }
-        }*/
-
-        return sum.also(::println)
+        return sum
     }
 
     fun part2(input: List<String>): Int {
