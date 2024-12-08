@@ -1,16 +1,3 @@
-import kotlin.math.pow
-
-fun generateCustomBaseSequences(n: Int, base: Int): Sequence<String> {
-    return sequence {
-        for (i in 0 until (base.toDouble().pow(n).toInt())) {
-            yield(i.toString(base).padStart(n, '0'))
-        }
-    }
-}
-
-infix fun Long.concatenateTo(other: Long): Long {
-    return (this.toString() + other.toString()).toLong()
-}
 fun main() {
     fun part1(input: List<String>): Long {
         return input.sumOf { expression ->

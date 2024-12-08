@@ -1,13 +1,8 @@
-private typealias Coordinate = Pair<Int, Int>
-
-private fun Coordinate.isIn(boundRow: Int, boundCol: Int): Boolean {
+internal fun Coordinate.isIn(boundRow: Int, boundCol: Int): Boolean {
     val (row, col) = this
     return row in 0 until boundRow && col in 0 until boundCol
 }
 
-private enum class Direction {
-    UP, DOWN, LEFT, RIGHT
-}
 
 private fun Direction.turnRight(): Direction {
     return when (this) {

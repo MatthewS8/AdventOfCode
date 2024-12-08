@@ -1,7 +1,7 @@
 import kotlin.math.abs
 import kotlin.math.max
 
-fun isDiffValid (a: Long, b: Long): Boolean {
+private fun isDiffValid (a: Long, b: Long): Boolean {
     return abs(a - b) <= 3 && (a - b) != 0L
 }
 
