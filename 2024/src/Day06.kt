@@ -1,9 +1,3 @@
-internal fun Coordinate.isIn(boundRow: Int, boundCol: Int): Boolean {
-    val (row, col) = this
-    return row in 0 until boundRow && col in 0 until boundCol
-}
-
-
 private fun Direction.turnRight(): Direction {
     return when (this) {
         Direction.UP -> Direction.RIGHT
@@ -13,7 +7,7 @@ private fun Direction.turnRight(): Direction {
     }
 }
 
-private fun Direction.getNextStep(c: Coordinate): Coordinate {
+fun Direction.getNextStep(c: Coordinate): Coordinate {
     val (row, col) = c
     return when (this) {
         Direction.UP -> row - 1 to col

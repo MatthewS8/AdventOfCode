@@ -1,5 +1,5 @@
 plugins {
-    kotlin("jvm") version "1.9.0"
+    kotlin("jvm") version "2.1.0"
 }
 
 sourceSets {
@@ -12,4 +12,8 @@ tasks {
     wrapper {
         gradleVersion = "8.11.1"
     }
+}
+
+dependencies {
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.9.0")
 }
